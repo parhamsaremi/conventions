@@ -205,3 +205,8 @@ test('type-space-after-comma2', () => {
     expect(typeSpaceAfterComma2.status).toBe(0);
 });
 
+test('wip-with-number-1', () => {
+    let commitMsgWithNoNumberAfterWIP = "WIP: bla bla blah";
+    let wipWithNumber1 = runCommitLintOnMsg(commitMsgWithNoNumberAfterWIP);
+    expect(wipWithNumber1.status).not.toBe(0);
+});

@@ -34,6 +34,7 @@ module.exports = {
         'subject-lowercase': [RuleStatus.Error, 'always'],
         'type-space-after-comma': [RuleStatus.Error, 'always'],
         'trailing-whitespace': [RuleStatus.Error, 'always'],
+        'wip-with-number': [RuleStatus.Error, 'always'],
     },
     plugins: [
         // TODO (ideas for more rules):
@@ -206,6 +207,18 @@ module.exports = {
                         !offence,
                         `Please watch out for leading or ending trailing whitespace`
                     ];
+                },
+
+                'wip-with-number': ({header}: {header:any}) => {
+                    let headerStr = convertAnyToString(header, "header");
+                    let offence = false;
+
+                    console.log("headerStr: " + headerStr);
+
+                    return [
+                        !offence,
+                        `Please add a number after the WIP prefix`
+                    ]
                 },
             }
         }

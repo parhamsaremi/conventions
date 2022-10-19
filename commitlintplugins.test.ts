@@ -210,3 +210,21 @@ test('wip-with-number-1', () => {
     let wipWithNumber1 = runCommitLintOnMsg(commitMsgWithNoNumberAfterWIP);
     expect(wipWithNumber1.status).not.toBe(0);
 });
+
+test('wip-with-number-2', () => {
+    let commitMsgWithNumberAfterWIP = "WIP01: bla bla blah";
+    let wipWithNumber1 = runCommitLintOnMsg(commitMsgWithNumberAfterWIP);
+    expect(wipWithNumber1.status).toBe(0);
+});
+
+test('wip-with-number-3', () => {
+    let commitMsgWithNumberAfterWIP = "wip0001111: bla bla blah";
+    let wipWithNumber1 = runCommitLintOnMsg(commitMsgWithNumberAfterWIP);
+    expect(wipWithNumber1.status).toBe(0);
+});
+
+test('wip-with-number-3', () => {
+    let commitMsgWithNumberAfterWIP = "wip: bla bla blah";
+    let wipWithNumber1 = runCommitLintOnMsg(commitMsgWithNumberAfterWIP);
+    expect(wipWithNumber1.status).not.toBe(0);
+});

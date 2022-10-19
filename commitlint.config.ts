@@ -214,14 +214,12 @@ module.exports = {
                     let offence = false;
                     var myRegexp = new RegExp("^wip(\d+)?:.*$", "i");
                     var match = myRegexp.exec(headerStr);
-                    var s = "";
                     if (match != null && match[1] == undefined){
                         offence = true;
-                        s = match[1]
                     }
                     return [
                         !offence,
-                        s
+                        `Please add a number after the WIP prefix`
                     ]
                 },
             }

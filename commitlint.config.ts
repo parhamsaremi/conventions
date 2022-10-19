@@ -212,12 +212,16 @@ module.exports = {
                 'wip-with-number': ({header}: {header:any}) => {
                     let headerStr = convertAnyToString(header, "header");
                     let offence = false;
-
-                    console.log("headerStr: " + headerStr);
-
+                    var myRegexp = new RegExp("^wip(\d+)?:.*$", "i");
+                    var match = myRegexp.exec(headerStr);
+                    var s = "";
+                    if (match != null && match[1] == undefined){
+                        offence = true;
+                        s = match[1]
+                    }
                     return [
                         !offence,
-                        `Please add a number after the WIP prefix`
+                        s
                     ]
                 },
             }

@@ -17,6 +17,7 @@ jobs:
         run: |
           sudo apt install --yes npm
           npm install @commitlint/config-conventional
+          sudo npm install -g yarn
           yarn add --dev jest typescript ts-jest @types/jest
       - name: Print versions
         run: |

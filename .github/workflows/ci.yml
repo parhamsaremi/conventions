@@ -9,6 +9,8 @@ jobs:
       image: "ubuntu:20.04"
     steps:
       - uses: actions/checkout@v2
+      - name: Install sudo
+        run: apt-get update && apt-get install -y sudo
       - name: Install required dependencies
         run: |
           sudo apt install --yes npm

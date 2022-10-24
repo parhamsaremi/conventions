@@ -37,11 +37,6 @@ jobs:
     container:
       image: "ubuntu:20.04"
     steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: recursive
-          # needed because of commit-lint, see https://github.com/conventional-changelog/commitlint/issues/3376
-          fetch-depth: 0
       - name: Install required dependencies
         run: |
           apt-get update && apt-get install -y sudo
@@ -53,6 +48,11 @@ jobs:
           curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 
           sudo apt-get install -y nodejs
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+          # needed because of commit-lint, see https://github.com/conventional-changelog/commitlint/issues/3376
+          fetch-depth: 0
       - name: Install commitlint
         run: npm install @commitlint/config-conventional
       - name: Validate current commit (last commit) with commitlint

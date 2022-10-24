@@ -53,6 +53,8 @@ jobs:
           submodules: recursive
           # needed because of commit-lint, see https://github.com/conventional-changelog/commitlint/issues/3376
           fetch-depth: 0
+      - name: ownership workaround
+        run: git config --global --add safe.directory '*'
       - name: Install commitlint
         run: npm install @commitlint/config-conventional
       - name: Validate current commit (last commit) with commitlint

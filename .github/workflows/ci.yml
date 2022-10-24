@@ -14,7 +14,7 @@ jobs:
           apt-get update && apt-get install -y sudo
           DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
           
-          sudo apt install curl dirmngr apt-transport-https lsb-release ca-certificates vim
+          sudo apt install -y curl dirmngr apt-transport-https lsb-release ca-certificates vim
           curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 
           sudo apt install --yes npm

@@ -43,7 +43,7 @@ jobs:
           sudo apt install -y git
           sudo apt-get install -y gcc g++ make
           
-          sudo apt install -y curl dirmngr apt-transport-https lsb-release ca-certificates
+          sudo apt install -y curl
           curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 
           sudo apt-get install -y nodejs

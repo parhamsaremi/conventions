@@ -9,12 +9,14 @@ jobs:
       image: "ubuntu:20.04"
     steps:
       - uses: actions/checkout@v2
-      - name: Install sudo
-        run: apt-get update && apt-get install -y sudo
-      - name: Install tzdata
-        run: DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
       - name: Install required dependencies
         run: |
+          apt-get update && apt-get install -y sudo
+          DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
+          
+          sudo apt install curl dirmngr apt-transport-https lsb-release ca-certificates vim
+          curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+
           sudo apt install --yes npm
           npm install @commitlint/config-conventional
           sudo npm install -g yarn

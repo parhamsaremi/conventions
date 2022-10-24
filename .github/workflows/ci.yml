@@ -41,7 +41,6 @@ jobs:
         run: |
           apt-get update && apt-get install -y sudo
           sudo apt install -y git
-          DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
           sudo apt-get install -y gcc g++ make
           
           sudo apt install -y curl dirmngr apt-transport-https lsb-release ca-certificates vim

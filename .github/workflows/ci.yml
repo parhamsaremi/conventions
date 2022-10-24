@@ -19,7 +19,6 @@ jobs:
           curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 
           sudo apt-get install -y nodejs
-          sudo apt install --yes npm
           npm install @commitlint/config-conventional
           sudo npm install -g yarn
           yarn add --dev jest typescript ts-jest @types/jest

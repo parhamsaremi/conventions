@@ -11,6 +11,8 @@ jobs:
       - uses: actions/checkout@v2
       - name: Install sudo
         run: apt-get update && apt-get install -y sudo
+      - name: Install tzdata
+        run: DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
       - name: Install required dependencies
         run: |
           sudo apt install --yes npm

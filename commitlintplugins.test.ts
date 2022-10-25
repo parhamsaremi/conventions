@@ -197,6 +197,7 @@ test('footer-correct-place-2', () => {
         + "\n\n"+ "Bla bla blah." 
         + "\n\n" + "[1] http://foo.bar/baz";
     let footerCorrectPlace2 = runCommitLintOnMsg(commitMsgWithWrongFooter);
+    console.log('HERE ============>' + footerCorrectPlace2.stdout)
     expect(footerCorrectPlace2.status).not.toBe(0);
 })
 

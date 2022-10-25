@@ -27,6 +27,11 @@ function assertLine(line: string) {
     }
 }
 
+function isEmptyLine(line: string) {
+    assertLine(line);
+    return line.length == 0;
+}
+
 function isBigBlock(line: string) {
     assertLine(line);
     let bigBlockDelimiter = "```";
@@ -82,6 +87,7 @@ module.exports = {
         'body-leading-blank': [RuleStatus.Warning, 'always'],
         'body-soft-max-line-length': [RuleStatus.Error, 'always'],
         'empty-wip': [RuleStatus.Error, 'always'],
+        'footer-correct-place': [RuleStatus.Error, 'always'],
         'footer-leading-blank': [RuleStatus.Warning, 'always'],
         'footer-max-line-length': [RuleStatus.Error, 'always', 150],
         'header-max-length': [RuleStatus.Error, 'always', 50],
@@ -164,6 +170,29 @@ module.exports = {
                     return [
                         !offence,
                         `Please add a number or description after the WIP prefix`
+                    ]
+                },
+
+                'footer-correct-place': ({body}: {body:any}) => {
+                    console.log("I'm sfdsfsdfsff")
+                    // console.log(body)
+                    let offence = false;
+
+                    if (body !== null) {
+                        let bodyStr = convertAnyToString(body, "body");
+
+                        let lines = bodyStr.split(/\r?\n/);
+                        // console.log(lines);
+                        for (let line of lines) {
+                            if (isEmptyLine(line)){
+                                continue;
+                            }
+                            console.log(line);
+                        }
+                    }
+                    return [
+                        !offence,
+                        `Please add footer messages after body paragraphs`
                     ]
                 },
 

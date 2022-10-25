@@ -14,7 +14,6 @@ jobs:
           apt update
           apt install -y sudo
           sudo apt install -y git
-          sudo apt install -y gcc g++ make
           
           sudo apt install -y curl
           curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -
@@ -30,6 +29,7 @@ jobs:
           npx commitlint --version
       - name: Run tests to validate our plugins
         run: yarn jest
+
   sanitycheck:
     runs-on: ubuntu-20.04
     container:
@@ -39,7 +39,6 @@ jobs:
         run: |
           apt update && apt install -y sudo
           sudo apt install -y git
-          sudo apt install -y gcc g++ make
           
           sudo apt install -y curl
           curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash -

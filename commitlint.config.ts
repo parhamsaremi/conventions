@@ -174,20 +174,25 @@ module.exports = {
                 },
 
                 'footer-correct-place': ({body}: {body:any}) => {
-                    console.log("I'm sfdsfsdfsff")
-                    // console.log(body)
                     let offence = false;
 
                     if (body !== null) {
                         let bodyStr = convertAnyToString(body, "body");
 
+                        let seenBody = false;
+                        let seenFooter = false;
                         let lines = bodyStr.split(/\r?\n/);
-                        // console.log(lines);
                         for (let line of lines) {
                             if (isEmptyLine(line)){
                                 continue;
                             }
-                            console.log(line);
+                            seenBody = seenBody || !isFooterNote(line);
+                            seenFooter = seenFooter || isFooterNote(line);
+                            if (seenFooter && !isFooterNote(line)) {
+                                offence = true;
+                                break;
+                            }
+                            
                         }
                     }
                     return [

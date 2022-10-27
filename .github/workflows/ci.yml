@@ -16,7 +16,7 @@ jobs:
           sudo apt install -y git
           
           sudo apt install -y nodejs
-          suo apt install -y npm
+          sudo apt install -y npm
           npm install @commitlint/config-conventional
           sudo npm install -g yarn
           yarn add --dev jest typescript ts-jest @types/jest

@@ -13,6 +13,9 @@ jobs:
         run: |
           apt update
           apt install -y sudo
+
+          DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get -y install tzdata
+          
           sudo apt install -y git
           sudo apt install -y snapd
           

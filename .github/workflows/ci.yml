@@ -19,7 +19,7 @@ jobs:
           sudo apt install -y git
           sudo apt install -y snapd
 
-          sudo systemctl start snapd.service
+          sudo service snapd start
           
           sudo apt install -y curl
           # can't install ubuntu's default nodejs version because we would get this error:

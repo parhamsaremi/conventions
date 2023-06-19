@@ -113,10 +113,20 @@ module.exports = {
                     return Plugins.footerNotesMisplacement(bodyStr);
                 },
 
-                "footer-references-validity": ({ body }: { body: any }) => {
+                "footer-references-validity": ({
+                    body,
+                    footer,
+                }: {
+                    body: any;
+                    footer: any;
+                }) => {
                     let bodyStr = Helpers.convertAnyToString(body, "body");
+                    let footerStr = Helpers.convertAnyToString(
+                        footer,
+                        "footer"
+                    );
 
-                    return Plugins.footerReferencesValidity(bodyStr);
+                    return Plugins.footerReferencesValidity(bodyStr, footerStr);
                 },
 
                 "prefer-slash-over-backslash": ({

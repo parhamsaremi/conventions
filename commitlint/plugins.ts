@@ -181,13 +181,24 @@ export abstract class Plugins {
         ];
     }
 
-    public static footerReferencesValidity(bodyStr: string | null) {
+    public static footerReferencesValidity(
+        bodyStr: string | null,
+        footerStr: string | null
+    ) {
         let offence = false;
         let hasEmptyFooter = false;
 
+        let commitBodyFooter = "";
         if (bodyStr !== null) {
-            bodyStr = bodyStr.trim();
-            let lines = bodyStr.split(/\r?\n/);
+            commitBodyFooter = bodyStr.trim();
+        }
+        if (footerStr !== null) {
+            commitBodyFooter = commitBodyFooter + "\n" + footerStr;
+        }
+        commitBodyFooter = commitBodyFooter.trim();
+        if (commitBodyFooter !== "") {
+            commitBodyFooter = commitBodyFooter.trim();
+            let lines = commitBodyFooter.split(/\r?\n/);
             let bodyReferences = new Set();
             let references = new Set();
             for (let line of lines) {

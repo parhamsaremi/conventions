@@ -244,9 +244,78 @@ let private WrapParagraph (text: string) (maxCharsPerLine: int) : string =
 
     processWords String.Empty String.Empty words
 
+let rec ExtractParagraphs(text: string) : List<string> =
+    let codeBlockParagraphRegex = "(\s*)(```[\s\S]*```)(\s*)"
+    let matchedRegex = Regex.Match(text, codeBlockParagraphRegex)
+    let twoNewLines = $"{Environment.NewLine}{Environment.NewLine}"
+
+    if matchedRegex.Success then
+        let preWhiteSpaceGroup = matchedRegex.Groups[1]
+        let postWhiteSpaceGroup = matchedRegex.Groups[3]
+
+        let beforeMatch = text.Substring(0, matchedRegex.Index)
+
+        let afterMatch =
+            text.Substring(matchedRegex.Index + matchedRegex.Length)
+
+        let paragraphsBeforeMatch = ExtractParagraphs beforeMatch
+        let paragraphsAfterMatch = ExtractParagraphs afterMatch
+
+        if
+            preWhiteSpaceGroup.Value.Contains(twoNewLines)
+            && postWhiteSpaceGroup.Value.Contains(twoNewLines)
+        then
+            paragraphsBeforeMatch
+            @ (List.singleton matchedRegex.Value) @ paragraphsAfterMatch
+        elif preWhiteSpaceGroup.Value.Contains(twoNewLines) then
+            match paragraphsAfterMatch with
+            | [] -> paragraphsBeforeMatch @ (List.singleton matchedRegex.Value)
+            | head :: tail ->
+                paragraphsBeforeMatch
+                @ List.singleton(
+                    matchedRegex.Value + postWhiteSpaceGroup.Value + head
+                  )
+                  @ tail
+        elif postWhiteSpaceGroup.Value.Contains(twoNewLines) then
+            match List.rev paragraphsBeforeMatch with
+            | [] -> (List.singleton matchedRegex.Value) @ paragraphsAfterMatch
+            | head :: tail ->
+                List.rev tail
+                @ List.singleton(
+                    head + preWhiteSpaceGroup.Value + matchedRegex.Value
+                  )
+                  @ paragraphsAfterMatch
+        else
+            match List.rev paragraphsBeforeMatch, paragraphsAfterMatch with
+            | [], [] -> List.singleton matchedRegex.Value
+            | headPre :: tailPre, [] ->
+                List.rev tailPre
+                @ List.singleton(
+                    headPre + preWhiteSpaceGroup.Value + matchedRegex.Value
+                )
+            | [], headPost :: tailPost ->
+                List.singleton(
+                    matchedRegex.Value + postWhiteSpaceGroup.Value + headPost
+                )
+                @ tailPost
+            | headPre :: tailPre, headPost :: tailPost ->
+                List.rev tailPre
+                @ List.singleton(
+                    headPre
+                    + preWhiteSpaceGroup.Value
+                    + matchedRegex.Value
+                    + postWhiteSpaceGroup.Value
+                    + headPost
+                  )
+                  @ tailPost
+    elif String.IsNullOrEmpty(text) then
+        List.Empty
+    else
+        text.Split twoNewLines |> Seq.toList
+
 let WrapText (text: string) (maxCharsPerLine: int) : string =
     let wrappedParagraphs =
-        text.Split $"{Environment.NewLine}{Environment.NewLine}"
+        ExtractParagraphs text
         |> Seq.map(fun paragraph -> WrapParagraph paragraph maxCharsPerLine)
 
     String.Join(

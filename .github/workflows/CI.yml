@@ -74,29 +74,29 @@ jobs:
       - run: apt install --yes sudo
       - run: sudo apt install --yes --no-install-recommends git ca-certificates
 
-      - run: sudo apt install --yes --no-install-recommends npm curl
+      - run: sudo apt install --yes --no-install-recommends curl
           # need to update nodejs because with ubuntu's default nodejs version we would get this error:
           # error @jest/core@29.4.1: The engine "node" is incompatible with this module. Expected version "^14.15.0 || ^16.10.0 || >=18.0.0". Got "12.22.9"
-      - run: sudo npm install --global n
+      - run: curl -fsSL https://bun.sh/install | bash
       - run: sudo n lts
       - name: Print versions
         run: |
           git --version
           node --version
-          npm --version
+          bun --version
       - name: Install yarn
         run: |
-          npm install --global yarn
+          bun install --global yarn
           yarn add --dev jest typescript ts-jest @types/jest
       - name: Install commitlint
         run: |
-          npm install conventional-changelog-conventionalcommits
-          npm install commitlint@latest
+          bun install conventional-changelog-conventionalcommits
+          bun install commitlint@latest
       - name: Print versions
         run: |
           git --version
           node --version
-          npm --version
+          bun --version
           npx commitlint --version
           yarn --version
       - name: Run tests to validate our plugins

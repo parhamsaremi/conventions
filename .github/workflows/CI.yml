@@ -86,6 +86,7 @@ jobs:
           which bun
       - name: Print versions
         run: |
+          echo "$PATH"
           git --version
           bun --version
       - name: Install yarn

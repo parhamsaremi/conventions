@@ -80,6 +80,7 @@ jobs:
       - name: Install Bun
         run: |
           curl -fsSL https://bun.sh/install | bash
+          ls $HOME
           export BUN_INSTALL="$HOME/.bun" 
           export PATH=$BUN_INSTALL/bin:$PATH 
           sudo bun install --global n

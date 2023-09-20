@@ -85,7 +85,7 @@ jobs:
           # pwd
           # export BUN_INSTALL="$HOME/.bun" 
           # export PATH=$BUN_INSTALL/bin:$PATH 
-          sudo bun install --global n
+          bun install --global n
       - run: sudo n lts
       - name: Print versions
         run: |

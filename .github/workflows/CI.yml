@@ -84,12 +84,9 @@ jobs:
           export PATH="$PATH:$BUN_INSTALL/bin"
           echo "$PATH"
           which bun
-          bun install --global n
-          n lts
       - name: Print versions
         run: |
           git --version
-          node -  -version
           bun --version
       - name: Install yarn
         run: |
@@ -102,9 +99,7 @@ jobs:
       - name: Print versions
         run: |
           git --version
-          node --version
           bun --version
-          npx commitlint --version
           yarn --version
       - name: Run tests to validate our plugins
         run: yarn jest

@@ -77,14 +77,11 @@ jobs:
       - run: sudo apt install --yes --no-install-recommends curl unzip
           # need to update nodejs because with ubuntu's default nodejs version we would get this error:
           # error @jest/core@29.4.1: The engine "node" is incompatible with this module. Expected version "^14.15.0 || ^16.10.0 || >=18.0.0". Got "12.22.9"
-      - uses: oven-sh/setup-bun@v1
       - name: Install Bun
         run: |
-          # curl -fsSL https://bun.sh/install | bash
-          # echo "abcd $HOME"
-          # pwd
-          # export BUN_INSTALL="$HOME/.bun" 
-          # export PATH=$BUN_INSTALL/bin:$PATH 
+          curl -fsSL https://bun.sh/install | bash
+          export BUN_INSTALL="$HOME/.bun" 
+          export PATH=$BUN_INSTALL/bin:$PATH 
           bun install --global n
       - run: n lts
       - name: Print versions

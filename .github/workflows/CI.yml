@@ -78,6 +78,7 @@ jobs:
           # need to update nodejs because with ubuntu's default nodejs version we would get this error:
           # error @jest/core@29.4.1: The engine "node" is incompatible with this module. Expected version "^14.15.0 || ^16.10.0 || >=18.0.0". Got "12.22.9"
       - run: curl -fsSL https://bun.sh/install | bash
+      - run: sudo bun install --global n
       - run: sudo n lts
       - name: Print versions
         run: |

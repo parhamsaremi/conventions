@@ -81,6 +81,7 @@ jobs:
         run: |
           curl -fsSL https://bun.sh/install | bash
           echo "abcd $HOME"
+          pwd
           export BUN_INSTALL="$HOME/.bun" 
           export PATH=$BUN_INSTALL/bin:$PATH 
           sudo bun install --global n

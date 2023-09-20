@@ -68,6 +68,7 @@ jobs:
       image: "ubuntu:22.04"
     steps:
       - uses: actions/checkout@v2
+      - uses: oven-sh/setup-bun@v1
       # - name: Install required dependencies
       #   run: |
       - run: apt update
@@ -79,11 +80,11 @@ jobs:
           # error @jest/core@29.4.1: The engine "node" is incompatible with this module. Expected version "^14.15.0 || ^16.10.0 || >=18.0.0". Got "12.22.9"
       - name: Install Bun
         run: |
-          curl -fsSL https://bun.sh/install | bash
-          echo "abcd $HOME"
-          pwd
-          export BUN_INSTALL="$HOME/.bun" 
-          export PATH=$BUN_INSTALL/bin:$PATH 
+          # curl -fsSL https://bun.sh/install | bash
+          # echo "abcd $HOME"
+          # pwd
+          # export BUN_INSTALL="$HOME/.bun" 
+          # export PATH=$BUN_INSTALL/bin:$PATH 
           sudo bun install --global n
       - run: sudo n lts
       - name: Print versions

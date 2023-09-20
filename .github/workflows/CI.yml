@@ -81,7 +81,8 @@ jobs:
         run: |
           curl -fsSL https://bun.sh/install | bash
           export BUN_INSTALL="$HOME/.bun" 
-          export PATH=$BUN_INSTALL/bin:$PATH 
+          export PATH="$PATH:$BUN_INSTALL/bin"
+          echo "$PATH"
           which bun
           bun install --global n
           n lts

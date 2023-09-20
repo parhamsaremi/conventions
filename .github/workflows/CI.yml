@@ -68,17 +68,17 @@ jobs:
       image: "ubuntu:22.04"
     steps:
       - uses: actions/checkout@v2
-      - name: Install required dependencies
-        run: |
-          apt update
-          apt install --yes sudo
-          sudo apt install --yes --no-install-recommends git ca-certificates
+      # - name: Install required dependencies
+      #   run: |
+      - run: apt update
+      - run: apt install --yes sudo
+      - run: sudo apt install --yes --no-install-recommends git ca-certificates
 
-          sudo apt install --yes --no-install-recommends npm curl
+      - run: sudo apt install --yes --no-install-recommends npm curl
           # need to update nodejs because with ubuntu's default nodejs version we would get this error:
           # error @jest/core@29.4.1: The engine "node" is incompatible with this module. Expected version "^14.15.0 || ^16.10.0 || >=18.0.0". Got "12.22.9"
-          sudo npm install --global n
-          sudo n lts
+      - run: sudo npm install --global n
+      - run: sudo n lts
       - name: Print versions
         run: |
           git --version

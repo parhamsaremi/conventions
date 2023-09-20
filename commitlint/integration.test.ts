@@ -1,7 +1,7 @@
 let cp = require("child_process");
 
 function runCommitLintOnMsg(inputMsg: string) {
-    return cp.spawnSync("npx", ["commitlint", "--verbose"], {
+    return cp.spawnSync("bun", ["commitlint", "--verbose"], {
         input: inputMsg,
     });
 }

@@ -1,7 +1,7 @@
 const { spawnSync } = require("child_process");
 
 function runCommitLintOnMsg(inputMsg: string) {
-    return spawnSync("npx", ["commitlint", "--verbose"], { input: inputMsg });
+    return spawnSync("bun", ["commitlint", "--verbose"], { input: inputMsg });
 }
 
 test("body-prose1", () => {

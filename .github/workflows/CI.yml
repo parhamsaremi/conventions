@@ -78,22 +78,11 @@ jobs:
       - uses: oven-sh/setup-bun@v1
           # need to update nodejs because with ubuntu's default nodejs version we would get this error:
           # error @jest/core@29.4.1: The engine "node" is incompatible with this module. Expected version "^14.15.0 || ^16.10.0 || >=18.0.0". Got "12.22.9"
-      # - name: Install Bun
-      #   run: |
-      #     curl -fsSL https://bun.sh/install | bash
-      #     export BUN_INSTALL="$HOME/.bun" 
-      #     echo "$BUN_INSTALL/bin" >> $GITHUB_PATH
-      #     echo "$PATH"
-      #     which bun
       - name: Print versions
         run: |
           echo "$GITHUB_PATH"
           git --version
           bun --version
-      # - name: Install yarn
-      #   run: |
-      #     bun install --global yarn
-      #     yarn add --dev jest typescript ts-jest @types/jest
       - name: Install commitlint
         run: |
           bun install conventional-changelog-conventionalcommits
@@ -102,7 +91,6 @@ jobs:
         run: |
           git --version
           bun --version
-          # yarn --version
       - name: Run tests to validate our plugins
         run: bun test
 

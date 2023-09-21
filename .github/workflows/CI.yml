@@ -90,10 +90,10 @@ jobs:
           echo "$GITHUB_PATH"
           git --version
           bun --version
-      - name: Install yarn
-        run: |
-          bun install --global yarn
-          yarn add --dev jest typescript ts-jest @types/jest
+      # - name: Install yarn
+      #   run: |
+      #     bun install --global yarn
+      #     yarn add --dev jest typescript ts-jest @types/jest
       - name: Install commitlint
         run: |
           bun install conventional-changelog-conventionalcommits
@@ -102,9 +102,9 @@ jobs:
         run: |
           git --version
           bun --version
-          yarn --version
+          # yarn --version
       - name: Run tests to validate our plugins
-        run: yarn jest
+        run: bun test
 
   sanity-check:
     name: Sanity check
